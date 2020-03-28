@@ -2,16 +2,18 @@
 Vue.component('poster', {
   props: {
     vidsource: String,
-    thumb: String
-  },
+    thumb: String,
+    description: String,
+    name: String
+  }, // 03 set string here
 
   template: `
     <li>
-      <a :href="vidsource" v-on:click.prevent="$emit('make-selection')">
+      <a :href="vidsource" v-on:click.prevent="$emit('make-selection', vidsource, description, name)"> 
         <img :src="'images/' + thumb" alt="movie poster">
       </a>
     </li>
-  `
+  ` // 01 emit the stuff
 })
 
 var vm = new Vue({
@@ -61,14 +63,14 @@ var vm = new Vue({
     },
 
     // this is ES6 data destructuring - pull the keys and values you need, not the whole object
-    loadMovie() { // {name, description, vidsource}
-      debugger;
+    loadMovie(movie, description, name) { // {name, description, vidsource}
+      // debugger;
       
-      console.log('show movie details');
+      console.log('show movie details', movie); 
 
+      this.videosource = movie;
       this.videotitle = name;
       this.videodescription = description;
-      this.videosource = vidsource;
 
       this.showDetails = true;
     },

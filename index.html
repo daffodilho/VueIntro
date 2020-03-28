@@ -50,8 +50,10 @@
     <ul class="video-poster-wrapper">
       <poster v-for="(movie, index) in videodata" v-on:make-selection="loadMovie"
         :vidsource="movie.vidsource"
+        :description="movie.description"
+        :name ="movie.name"
         :thumb="movie.thumb"
-        :key="index">
+        :key="index"> <!--02 bind the stuff to data in vm--> 
       </poster>
       <!-- <li v-for="movie in videodata">
         <a :href="movie.vidsource" v-on:click.prevent="loadMovie(movie)">
